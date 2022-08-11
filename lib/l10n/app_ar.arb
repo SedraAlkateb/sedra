@@ -1,0 +1,19 @@
+{
+  "helloWorld": "مرحبا بالعالم",
+  "hello":"مرحبا {username}",
+  "Log In":"تسجيل الدخول",
+  "Email":"إيميل",
+  "Password":"كلمة السر",
+  "Register Now":"سجل الان",
+   "LOGIN":"تسجيل الدخول",
+   "Sign Up":"انشاء حساب",
+   "Location":"الموقع",
+   "Confirm Password":"تاكيد كلمة السر",
+   "Username":"الاسم",
+   "medicine_reservation":"حجز دواء",
+   "medicine_show":"عرض دواء",
+   "search_for_medicine":"البحث عن دواء",
+"pharmacies_that_contain_the_medicine":"الصيدليات التي تحتوي على الدواء",
+"Street":"الطريق"
+
+}
