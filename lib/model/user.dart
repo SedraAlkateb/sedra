@@ -23,7 +23,7 @@ class UserModel {
         location: json["Location"],
         password: json["password"],
       );
-
+ 
   Map<String, dynamic> toJson() => {
         "Username": username,
         "Email": email,

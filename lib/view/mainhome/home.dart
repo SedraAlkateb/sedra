@@ -36,12 +36,14 @@ class _HomeScreenState extends State<HomeScreen> {
               backgroundColor: Colors.white,
               elevation: 0.0,
               titleSpacing: 53.0,
-              title: const Text(
-                "LOGO",
-                style: TextStyle(
-                  color: Color(0XFF243162),
-                ),
-              ),
+             title:   Container(
+            height: 100,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("logo.png"),
+                            fit: BoxFit.none,
+                            )),
+                  ),
               actions: [
                 PopupMenuButton<MenuItemm>(
                   icon: const Icon(Icons.menu_outlined,
@@ -78,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
             body: TabBarView(children: [
               //HomeScreen1();
               Home2(),
-              Home1(),
+              const Home1(),
             ])),
       ),
     );

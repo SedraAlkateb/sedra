@@ -19,12 +19,14 @@ class _AllMedState extends State<AllMed> {
         backgroundColor: const Color(0xffF8F9F9),
         elevation: 0.0,
         titleSpacing: 53.0,
-        title: const Text(
-          "LOGO",
-          style: TextStyle(
-            color: Color(0XFF243162),
-          ),
-        ),
+       title:   Container(
+            height: 100,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("logo.png"),
+                            fit: BoxFit.none,
+                            )),
+                  ),
        leading: 
              IconButton(
           onPressed: () {
@@ -84,22 +86,24 @@ class _AllMedState extends State<AllMed> {
               ],
             ),
           ),
-           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: IconButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const RushSceen(),
-                    ));
-              },
-              icon: const Padding(
-                padding: EdgeInsets.only(right: 80,bottom: 80),
-                child: Icon(
-                  Icons.add_circle_sharp,
-                  color: Color(0XFF026C73),
-                  size: 61.0,
+          Padding(
+            padding: const EdgeInsets.all(6.0),
+            child: Container(
+              alignment: Alignment.bottomRight,
+              child: IconButton(
+                iconSize: 61,
+                alignment: Alignment.center,
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const RushSceen(),
+                      ));
+                },
+                icon: const Icon(
+                  Icons.add_circle,
+                  size: 61,
+                  color: Color(0xFF026c73),
                 ),
               ),
             ),

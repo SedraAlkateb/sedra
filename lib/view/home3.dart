@@ -28,12 +28,14 @@ class _Home3State extends State<Home3> {
           backgroundColor: Colors.white,
           elevation: 0.0,
           titleSpacing: 53.0,
-          title: const Text(
-            "LOGO",
-            style: TextStyle(
-              color: Color(0XFF243162),
-            ),
-          ),
+         title:   Container(
+            height: 100,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("logo.png"),
+                            fit: BoxFit.none,
+                            )),
+                  ),
          
           centerTitle: true,
         ),

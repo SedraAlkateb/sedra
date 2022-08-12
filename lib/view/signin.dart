@@ -6,6 +6,7 @@ import 'package:care4sure/view_model/signin_veiwmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:care4sure/components/components.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 // ignore: camel_case_types
 class signin extends StatefulWidget {
   const signin({Key? key}) : super(key: key);
@@ -17,8 +18,8 @@ class signin extends StatefulWidget {
 // ignore: camel_case_types
 class _signinState extends State<signin> {
   @override
- String _userName = "", _password = "";
-   var svm =signin_viewmodel();
+  String _userName = "", _password = "";
+  var svm = signin_viewmodel();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   var formKey = GlobalKey<FormState>();
@@ -27,9 +28,8 @@ class _signinState extends State<signin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: 
-      Container(
-           decoration: BoxDecoration(
+      body: Container(
+        decoration: BoxDecoration(
             image: DecorationImage(
                 image: const AssetImage("signin.png"),
                 fit: BoxFit.fill,
@@ -95,15 +95,15 @@ class _signinState extends State<signin> {
                         decoration: InputDecoration(
                             labelText: AppLocalizations.of(context)!.password,
                             border: const OutlineInputBorder(
-                              borderRadius:  BorderRadius.all(
-                                 Radius.circular(40.0),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(40.0),
                               ),
                             ),
                             prefixIcon: const Icon(
-                              Icons.remove_red_eye,
+                              Icons.lock,
                             ),
                             suffixIcon: const Icon(
-                              Icons.lock,
+                              Icons.remove_red_eye,
                             )),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -133,14 +133,11 @@ class _signinState extends State<signin> {
                             truepass = "mas";
                           } else {
                             if (formKey.currentState!.validate()) {
-                           // svm.ss("sa","Asa","asa","asa");
-                             // ignore: avoid_print
-                             print(svm.email);
+                           //  var  sin= {"username":_userName,"password":_password,"location":"","Email":""};
+                             
                               Navigator.push(
-                              
                                   context,
                                   MaterialPageRoute(
-                                    
                                     builder: (context) => const HomeScreen(),
                                   ));
                             }

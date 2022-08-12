@@ -134,6 +134,33 @@ class _signupState extends State<signup> {
                       const SizedBox(
                         height: 20.0,
                       ),
+                       Container(
+                        height: 53,
+                        padding:
+                            const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25.0),
+                          color: Colors.white,
+                        ),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            value: value,
+                            hint: const Text("Governorate"),
+                            icon:
+                                const Icon(Icons.arrow_drop_down, color: Colors.grey),
+                            isExpanded: true,
+                            //isDense: true,
+                            //  itemHeight: 20.0,
+                            //    elevation: 0.4,
+                            items: items1.map(buildMenuItem).toList(),
+                            onChanged: (value) =>
+                                setState(() => this.value = value),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20.0,
+                      ),
                       Container(
                         height: 53,
                         padding:

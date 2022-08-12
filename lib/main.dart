@@ -1,4 +1,6 @@
+import 'package:care4sure/view/mainhome/home.dart';
 import 'package:care4sure/view/notification.dart';
+import 'package:care4sure/view/signin.dart';
 import 'package:care4sure/view_model/postsvm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -22,7 +24,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
         
         ), 
-    
         home:const Notification1(),
        
         localizationsDelegates: AppLocalizations.localizationsDelegates,

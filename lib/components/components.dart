@@ -1,5 +1,6 @@
 import 'package:care4sure/model/listview.dart';
 import 'package:care4sure/model/menuitem.dart';
+import 'package:care4sure/view/pharmacy.dart';
 import 'package:care4sure/view/rush.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -93,6 +94,7 @@ Widget viewlist(int itemCount, String text1, BuildContext context,
                 ),
                 itemCount: listt.length,
                 itemBuilder: (context, index) => listpharm(
+                   context,
                     listt[index].pharmacyName!,
                     listt[index].pharmacyWebsite!,
                     listt[index].image!),
@@ -170,35 +172,39 @@ Widget listmedicin(String name, position) {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-         icon(Icons.medication_liquid_rounded, 31, const Color(0XFF00AFB9)),
-         const SizedBox(width: 10.0,),
-          Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                name,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontSize: 16.0),
-              ),
+              icon(
+                  Icons.medication_liquid_rounded, 31, const Color(0XFF00AFB9)),
               const SizedBox(
-                height: 5.0,
+                width: 10.0,
               ),
-              Row(
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                 icon(Icons.location_on, 15, const Color(0XFF00AFB9)),
-                const SizedBox(width:5.0 ,),
                   Text(
-                    position,
+                    name,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(fontSize: 16.0),
                   ),
+                  const SizedBox(
+                    height: 5.0,
+                  ),
+                  Row(
+                    children: [
+                      icon(Icons.location_on, 15, const Color(0XFF00AFB9)),
+                      const SizedBox(
+                        width: 5.0,
+                      ),
+                      Text(
+                        position,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(fontSize: 16.0),
+                      ),
+                    ],
+                  ),
                 ],
               ),
-            ],
-          ),
-             
             ],
           ),
         ),
@@ -206,105 +212,116 @@ Widget listmedicin(String name, position) {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-            IconButton(
-            onPressed: () => {},
-            icon: icon(Icons.edit, 21, const Color(0XFF00AFB9)),
+              IconButton(
+                onPressed: () => {},
+                icon: icon(Icons.edit, 21, const Color(0XFF00AFB9)),
+              ),
+              const SizedBox(
+                width: 8.0,
+              ),
+              IconButton(
+                onPressed: () => {},
+                icon: icon(Icons.restore_from_trash_outlined, 21,
+                    const Color(0XFF00AFB9)),
+              )
+            ],
           ),
-          const SizedBox(
-            width: 8.0,
-          ),
-          IconButton(
-            onPressed: () => {},
-            icon: icon(
-                Icons.restore_from_trash_outlined, 21, const Color(0XFF00AFB9)),
-          )
-          ],),
         )
-        
       ],
     ),
   );
 }
 
-Widget listnotification(String massage) {
+Widget listnotification(String messag) {
   return Container(
     color: Colors.white,
-    height: 30.0,
+    //height: 20.0,
     child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0,horizontal: 20.0 ),
+      padding: const EdgeInsets.symmetric(vertical: 20.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          CircleAvatar(
-               maxRadius:10.0,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children:  [
+             const CircleAvatar(
+            maxRadius: 10.0,
             backgroundColor: Color(0xff026c73),
           ),
-          SizedBox(width: 15.0),
-          Text(
-            "massage",
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(fontSize: 15.0),
-            
-          ),
+         const SizedBox(width: 10,),
+           Expanded(
+             child: Text(
+                      messag,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(fontSize: 16.0,overflow: TextOverflow.clip),
+                    ),
+           ),
+                
         ],
       ),
     ),
   );
 }
 
-Widget listpharm(String pos, String name, Image image) {
-  return Column(
-    children: [
-      Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Row(
+Widget listpharm(BuildContext context,String pos, String name, Image image) {
+  return InkWell(
+    onTap: ((){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Pharmacy(),
+                      ));
+                }),
+    child: Column(
+        children: [
+          Padding(
+    padding: const EdgeInsets.all(20.0),
+    child: Row(
+      children: [
+        Container(
+            width: 85.0,
+            height: 85.0,
+            color: Colors.grey[300],
+            child: image),
+        const SizedBox(width: 15.0),
+        Column(
           children: [
-            Container(
-                width: 85.0,
-                height: 85.0,
-                color: Colors.grey[300],
-                child: image),
-            const SizedBox(width: 15.0),
-            Column(
+            Row(
               children: [
-                Row(
-                  children: [
-                    icon(Icons.home, 15, const Color(0XFF00AFB9)),
-                    Text(
-                      name,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(fontSize: 16.0),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 5.0,
-                ),
-                Row(
-                  children: [
-                    Text(
-                      pos,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(fontSize: 14.0),
-                    ),
-                  ],
+                icon(Icons.home, 15, const Color(0XFF00AFB9)),
+                Text(
+                  name,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(fontSize: 16.0),
                 ),
               ],
             ),
             const SizedBox(
-              height: 10.0,
-            )
+              height: 5.0,
+            ),
+            Row(
+              children: [
+                Text(
+                  pos,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(fontSize: 14.0),
+                ),
+              ],
+            ),
           ],
         ),
+        const SizedBox(
+          height: 10.0,
+        )
+      ],
+    ),
+          ),
+          const SizedBox(
+    height: 20.0,
+          ),
+        ],
       ),
-      const SizedBox(
-        height: 20.0,
-      ),
-    ],
   );
 }
 

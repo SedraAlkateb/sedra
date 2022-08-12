@@ -1,5 +1,6 @@
 import 'package:care4sure/components/components.dart';
 import 'package:care4sure/model/menuitem.dart';
+import 'package:care4sure/view/mainhome/home.dart';
 import 'package:flutter/material.dart';
 
 import '../../view_model/menuitemvm.dart';
@@ -15,17 +16,20 @@ class Notification1 extends StatefulWidget {
 class _Notification1State extends State<Notification1> {
   @override
   Widget build(BuildContext context) {
+    var i=0;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFFFFFFFF),
         elevation: 0.0,
         titleSpacing: 53.0,
-        title: const Text(
-          "LOGO",
-          style: TextStyle(
-            color: Color(0XFF243162),
-          ),
-        ),
+     title:   Container(
+            height: 100,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("logo.png"),
+                            fit: BoxFit.none,
+                            )),
+                  ),
         actions: [
           PopupMenuButton<MenuItemm>(
             icon: const Icon(Icons.menu_outlined,
@@ -41,6 +45,13 @@ class _Notification1State extends State<Notification1> {
         ],
         leading: IconButton(
           onPressed: () {
+            if (i == 0) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HomeScreen(),
+                  ));
+            }
           },
           icon: const Icon(Icons.arrow_back_ios,
               size: 31.0, color: Color(0XFF243162)),
@@ -51,14 +62,20 @@ class _Notification1State extends State<Notification1> {
         children: [
           Container(
             color: Colors.grey[300],
-           height: 10.0,
+            height: 10.0,
           ),
-          SingleChildScrollView(
-            child: ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.vertical,
-              itemCount: 6,
-              itemBuilder: (context, index) => listnotification("shhhhhhhhhhhhhhhhhbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbhhhhhhhhhhhhf"),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: SingleChildScrollView(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  itemCount: 5,
+                  itemBuilder: (context, index) =>
+                      listnotification("sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssk"),
+                ),
+              ),
             ),
           ),
         ],

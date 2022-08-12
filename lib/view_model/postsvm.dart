@@ -4,10 +4,8 @@ import 'package:care4sure/view_model/postviewmodel.dart';
 import 'package:flutter/foundation.dart';
 
 class PostsViewModel extends ChangeNotifier {
-  final String title = "All Posts";
   PostsRepository? postsRepository;
   PostsViewModel({this.postsRepository});
-
   Future<List<PostViewModel>> fetchAllPosts() async {
     List<ListViewm> list = await postsRepository!.getAllPosts();
     return list.map((post) => PostViewModel(postModel: post)).toList();
