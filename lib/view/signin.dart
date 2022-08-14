@@ -2,7 +2,7 @@
 
 import 'package:care4sure/view/mainhome/home.dart';
 import 'package:care4sure/view/signup.dart';
-import 'package:care4sure/view_model/signin_veiwmodel.dart';
+//import 'package:care4sure/view_model/signin_veiwmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:care4sure/components/components.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -19,12 +19,14 @@ class signin extends StatefulWidget {
 class _signinState extends State<signin> {
   @override
   String _userName = "", _password = "";
-  var svm = signin_viewmodel();
+  //var svm = signin_viewmodel();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   var formKey = GlobalKey<FormState>();
   String truepass = "";
   String mas = "";
+        var obscureTextt=true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,7 +93,7 @@ class _signinState extends State<signin> {
                         onSaved: (value) => _password = value!,
                         controller: passwordController,
                         keyboardType: TextInputType.visiblePassword,
-                        obscureText: true,
+                        obscureText: obscureTextt,
                         decoration: InputDecoration(
                             labelText: AppLocalizations.of(context)!.password,
                             border: const OutlineInputBorder(
@@ -102,9 +104,23 @@ class _signinState extends State<signin> {
                             prefixIcon: const Icon(
                               Icons.lock,
                             ),
-                            suffixIcon: const Icon(
-                              Icons.remove_red_eye,
-                            )),
+                              suffixIcon: GestureDetector(
+                                
+                              onTap: () { 
+                                setState(() {
+                                   obscureTextt=!obscureTextt;
+                                });
+                               
+                              } ,
+                              child: obscureTextt ? const Icon(
+                              Icons.visibility_off,
+                            ): const Icon(
+                              Icons.visibility,
+                            ),
+                            ),
+                           
+                            ),
+                           
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "email musn't be password";

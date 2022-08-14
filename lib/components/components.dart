@@ -5,6 +5,7 @@ import 'package:care4sure/view/rush.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../view/user1.dart';
 import '../view_model/menuitemvm.dart';
 
 List<ListViewm> listt = [];
@@ -12,8 +13,13 @@ List<ListViewm> listt = [];
 void onSelected(BuildContext context, MenuItemm item) {
   switch (item) {
     case MenuItems.itemlogout:
-      // ignore: avoid_print
-      print('vvvf');
+      break;
+    case MenuItems.itemprofile:
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const User1(),
+          ));
       break;
   }
 }
@@ -23,6 +29,7 @@ PopupMenuItem<MenuItemm> buildItem(MenuItemm item) => PopupMenuItem<MenuItemm>(
       child: Row(
         children: [
           Text(item.text),
+          const SizedBox(width: 8,),
           Icon(
             item.icon,
             color: Colors.black,
@@ -140,7 +147,7 @@ TabBar getTabBar(BuildContext context) => TabBar(
 
 Widget defaultButton({
   double width = double.infinity,
-  Color background = Colors.blue,
+  Color background =const Color(0XFF293462),
   required Function function,
   required String textt,
   bool isUpperCase = true,
@@ -274,13 +281,12 @@ Widget listpharm(BuildContext context,String pos, String name, Image image) {
     child: Column(
         children: [
           Padding(
-    padding: const EdgeInsets.all(20.0),
+    padding: const EdgeInsets.symmetric(horizontal: 20),
     child: Row(
       children: [
-        Container(
+        SizedBox(
             width: 85.0,
             height: 85.0,
-            color: Colors.grey[300],
             child: image),
         const SizedBox(width: 15.0),
         Column(

@@ -20,69 +20,65 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final searchcontroller1 = TextEditingController();
 
-  final items1 = ["Log out"];
 
   var value = "";
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: DefaultTabController(
-        length: 2,
-        child: Scaffold(
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
             backgroundColor: Colors.white,
-            appBar: AppBar(
-              backgroundColor: Colors.white,
-              elevation: 0.0,
-              titleSpacing: 53.0,
-             title:   Container(
-            height: 100,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage("logo.png"),
-                            fit: BoxFit.none,
-                            )),
-                  ),
-              actions: [
-                PopupMenuButton<MenuItemm>(
-                  icon: const Icon(Icons.menu_outlined,
-                      size: 31.0, color: Color(0XFF243162)),
-                  offset: const Offset(50, 50),
-                  onSelected: (item) => onSelected(context, item),
-                  itemBuilder: (context) =>
-                      MenuItems.itemFirst.map(buildItem).toList(),
+            elevation: 0.0,
+            titleSpacing: 53.0,
+           title:   Container(
+          height: 100,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("logo.png"),
+                          fit: BoxFit.none,
+                          )),
                 ),
-                const SizedBox(
-                  height: 10,
-                )
-              ],
-              leading: IconButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const Notification1(),
-                      ));
-                },
-                icon: const Icon(Icons.add_alert_rounded,
+            actions: [
+              PopupMenuButton<MenuItemm>(
+                icon: const Icon(Icons.menu_outlined,
                     size: 31.0, color: Color(0XFF243162)),
+                offset: const Offset(50, 50),
+                onSelected: (item) => onSelected(context, item),
+                itemBuilder: (context) =>
+                    MenuItems.itemFirst.map(buildItem).toList(),
               ),
-              centerTitle: true,
-              bottom: PreferredSize(
-                preferredSize: getTabBar(context).preferredSize,
-                child: Material(
-                  color: const Color(0xff293462),
-                  child: getTabBar(context),
-                ),
+              const SizedBox(
+                height: 10,
+              )
+            ],
+            leading: IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Notification1(),
+                    ));
+              },
+              icon: const Icon(Icons.add_alert_rounded,
+                  size: 31.0, color: Color(0XFF243162)),
+            ),
+            centerTitle: true,
+            bottom: PreferredSize(
+              preferredSize: getTabBar(context).preferredSize,
+              child: Material(
+                color: const Color(0xff293462),
+                child: getTabBar(context),
               ),
             ),
-            body: TabBarView(children: [
-              //HomeScreen1();
-              Home2(),
-              const Home1(),
-            ])),
-      ),
+          ),
+          body: TabBarView(children: [
+            //HomeScreen1();
+            Home2(),
+            const Home1(),
+          ])),
     );
   }
 }

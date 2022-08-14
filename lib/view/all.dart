@@ -2,6 +2,7 @@ import 'package:care4sure/components/components.dart';
 import 'package:care4sure/view/notification.dart';
 import 'package:care4sure/view/rush.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AllMed extends StatefulWidget {
   const AllMed({Key? key}) : super(key: key);
@@ -64,11 +65,11 @@ class _AllMedState extends State<AllMed> {
                 ),
                               const SizedBox(height: 30.0,),
 
-                const Text(
-                "All medicines",
+                 Text(
+                AppLocalizations.of(context)!.medicines,
                 maxLines: 4,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 18.0,fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 30.0,),
                 SingleChildScrollView(

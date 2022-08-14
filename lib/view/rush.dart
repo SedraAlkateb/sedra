@@ -1,11 +1,10 @@
 // ignore_for_file: sized_box_for_whitespace
 import 'dart:io';
 
-import 'package:care4sure/view/notification.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../components/components.dart';
 import '../model/menuitem.dart';
 import '../view_model/menuitemvm.dart';
@@ -48,15 +47,12 @@ File? image;
             titleSpacing: 53.0,
             leading: IconButton(
               onPressed: () {
-                  Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Notification1(),
-                          ));
-                
+                  Navigator.pop(
+                          context);
+                        
               },
               icon: const Icon(
-                Icons.notification_important,
+                Icons.arrow_back_ios_new,
                 color: Color(0XFF243162),
               ),
             ),
@@ -119,7 +115,7 @@ File? image;
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: text(
-                          text: "صورة الراشيتا التي تحتوي الدواء",
+                          text: AppLocalizations.of(context)!.prescription,
                           c: Colors.black,
                           fs: 20.0,
                           fw: FontWeight.normal),
@@ -137,9 +133,11 @@ File? image;
                               
                               
                             },
-                            textt: "تأكيد",
+                            textt:AppLocalizations.of(context)!.confirmation,
                             isUpperCase: false,
-                            width: 100.0,
+                            width: 180.0,
+                            radios:22
+                            
                           ),
                         ],
                       ),

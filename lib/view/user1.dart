@@ -1,9 +1,13 @@
 // ignore_for_file: prefer_const_constructors
-
+import 'dart:io';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'package:care4sure/components/components.dart';
+import 'package:care4sure/view/mainhome/home.dart';
 import 'package:care4sure/view/notification.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class User1 extends StatefulWidget {
   const User1({Key? key}) : super(key: key);
@@ -14,6 +18,28 @@ class User1 extends StatefulWidget {
 }
 
 class _User1State extends State<User1> {
+    final passwordController = TextEditingController();
+
+  File? image1;
+  final items1 = ['i1', 'i2', 'i3', 'i4', 'i5'];
+  final items2 = ['j1', 'j2', 'j3', 'j4', 'j5'];
+   final streetcontroller = TextEditingController();
+
+  String? value;
+
+  String? value1;
+  Future pickImage() async {
+    try {
+      final image1 = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image1 == null) return;
+      final imageTemporary = File(image1.path);
+      setState(() => this.image1 = imageTemporary);
+    } on PlatformException catch (e) {
+      // ignore: avoid_print
+      print("object $e");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,16 +47,22 @@ class _User1State extends State<User1> {
           backgroundColor: const Color(0xffF8F9F9),
           elevation: 0.0,
           titleSpacing: 60.0,
-          title:   Container(
+          title: Container(
             height: 100,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: const AssetImage("logo.png"),
-                            fit: BoxFit.none,
-                            )),
-                  ),
+            decoration: BoxDecoration(
+                image: DecorationImage(
+              image: const AssetImage("logo.png"),
+              fit: BoxFit.none,
+            )),
+          ),
           leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HomeScreen(),
+                  ));
+            },
             icon: const Icon(Icons.arrow_back_ios,
                 size: 21.0, color: Color(0XFF243162)),
           ),
@@ -61,17 +93,27 @@ class _User1State extends State<User1> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: const AssetImage("s.png"),
-                            fit: BoxFit.fill,
-                            )),
+                      image: const AssetImage("s.png"),
+                      fit: BoxFit.fill,
+                    )),
                   ),
                   Center(
                     child: Column(
                       children: [
-                        CircleAvatar(
-                            maxRadius: 50.0,
-                            backgroundColor: Color(0xFF00818a),
-                            child: icon(Icons.person, 21, Color(0xFFFFFFFF))),
+                        image1 != null
+                            ? Image.file(
+                                image1!,
+                                width: 40,
+                                height: 40,
+                              )
+                            : InkWell(
+                                onTap: () => pickImage(),
+                                child: CircleAvatar(
+                                    maxRadius: 50.0,
+                                    backgroundColor: Colors.grey[400],
+                                    child:
+                                        icon(Icons.add, 21, Color(0xFFFFFFFF))),
+                              ),
                         Text(
                           "name",
                           style: TextStyle(
@@ -85,7 +127,8 @@ class _User1State extends State<User1> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical:20.0 ),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 20.0, vertical: 20.0),
                 child: Column(
                   children: [
                     Row(
@@ -98,7 +141,7 @@ class _User1State extends State<User1> {
                           width: 10,
                         ),
                         Text(
-                          "full name",
+                          AppLocalizations.of(context)!.fullname,
                           style: TextStyle(
                               fontSize: 18.0, fontWeight: FontWeight.bold),
                         ),
@@ -113,7 +156,6 @@ class _User1State extends State<User1> {
                         height: 34.0,
                         child: TextFormField(
                           decoration: InputDecoration(
-                            labelText: "input name",
                             border: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(30.0),
@@ -138,7 +180,7 @@ class _User1State extends State<User1> {
                           width: 5.0,
                         ),
                         Text(
-                          "position",
+                          AppLocalizations.of(context)!.location,
                           style: TextStyle(
                               fontSize: 18.0, fontWeight: FontWeight.bold),
                         ),
@@ -147,111 +189,112 @@ class _User1State extends State<User1> {
                     SizedBox(
                       height: 20.0,
                     ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: SizedBox(
-                            height: 34.0,
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                labelText: "input city",
-                                border: const OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(30.0),
-                                  ),
-                                ),
-                                prefixIcon: const Icon(
-                                  Icons.edit,
-                                  size: 17,
-                                  color: Color(0xFF216583),
-                                ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                     Container(
+                        height: 34,
+                        padding:
+                            const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25.0),
+                          color: Colors.blue[50],
+                        ),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            value: value,
+                            hint:  Text(AppLocalizations.of(context)!.governorate),
+                            icon:
+                                const Icon(Icons.arrow_drop_down, color: Colors.grey),
+                            isExpanded: true,
+                            //isDense: true,
+                            //  itemHeight: 20.0,
+                            //    elevation: 0.4,
+                            items: items1.map(buildMenuItem).toList(),
+                            onChanged: (value) =>
+                                setState(() => this.value = value),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20.0,
+                      ),
+                      Container(
+                        height: 34,
+                        padding:
+                            const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25.0),
+                          color: Colors.blue[50],
+                        ),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            value: value,
+                            hint:  Text(AppLocalizations.of(context)!.city),
+                            icon:
+                                const Icon(Icons.arrow_drop_down, color: Colors.grey),
+                            isExpanded: true,
+                            //isDense: true,
+                            //  itemHeight: 20.0,
+                            //    elevation: 0.4,
+                            items: items1.map(buildMenuItem).toList(),
+                            onChanged: (value) =>
+                                setState(() => this.value = value),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20.0,
+                      ),
+                      Container(
+                        height: 34,
+                        padding:
+                            const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25.0),
+                          color: Colors.blue[50],
+                        ),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            value: value1,
+                            hint:  Text(AppLocalizations.of(context)!.area),
+                            icon: const Icon(
+                              Icons.arrow_drop_down,
+                              color: Colors.grey,
+                            ),
+                            isExpanded: true,
+                            items: items2.map(buildMenuItem).toList(),
+                            onChanged: (value) =>
+                                setState(() => value1 = value),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20.0,
+                      ),
+                      Container(
+                        height: 34,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
+                        child: TextFormField(
+                          controller: streetcontroller,
+                          decoration: InputDecoration(
+                            labelText: AppLocalizations.of(context)!.street,
+                            border: const OutlineInputBorder(
+                              borderRadius:  BorderRadius.all(
+                                 Radius.circular(53.0),
                               ),
                             ),
                           ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return AppLocalizations.of(context)!.empty;
+                            }
+                            return null;
+                          },
                         ),
-                        SizedBox(
-                          width: 40,
-                        ),
-                        Text(
-                          "city",
-                          style: TextStyle(
-                              fontSize: 18.0, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: SizedBox(
-                            height: 34.0,
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                labelText: "input aria",
-                                border: const OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(30.0),
-                                  ),
-                                ),
-                                prefixIcon: const Icon(
-                                  Icons.edit,
-                                  size: 17,
-                                  color: Color(0xFF216583),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 40,
-                        ),
-                        Text(
-                          "aria",
-                          style: TextStyle(
-                              fontSize: 18.0, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: SizedBox(
-                            height: 34.0,
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                labelText: "input street",
-                                border: const OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(30.0),
-                                  ),
-                                ),
-                                prefixIcon: const Icon(
-                                  Icons.edit,
-                                  size: 17,
-                                  color: Color(0xFF216583),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 25,
-                        ),
-                        Text(
-                          "street",
-                          style: TextStyle(
-                              fontSize: 18.0, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
+                      ),
                     SizedBox(
                       height: 20.0,
                     ),
@@ -262,7 +305,7 @@ class _User1State extends State<User1> {
                           width: 10.0,
                         ),
                         Text(
-                          "Email",
+                          AppLocalizations.of(context)!.email,
                           style: TextStyle(
                               fontSize: 18.0, fontWeight: FontWeight.bold),
                         ),
@@ -277,7 +320,6 @@ class _User1State extends State<User1> {
                         height: 34.0,
                         child: TextFormField(
                           decoration: InputDecoration(
-                            labelText: "input email",
                             border: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(30.0),
@@ -302,7 +344,7 @@ class _User1State extends State<User1> {
                           width: 5.0,
                         ),
                         Text(
-                          "Password",
+                          AppLocalizations.of(context)!.password,
                           style: TextStyle(
                               fontSize: 18.0, fontWeight: FontWeight.bold),
                         ),
@@ -311,28 +353,49 @@ class _User1State extends State<User1> {
                     SizedBox(
                       height: 20,
                     ),
+                   
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 36.0),
                       child: SizedBox(
                         height: 34.0,
                         child: TextFormField(
+                          obscureText: true,
+                          keyboardType: TextInputType.visiblePassword,
+                          controller: passwordController,
                           decoration: InputDecoration(
-                            labelText: "input password",
                             border: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(30.0),
                               ),
                             ),
-                            prefixIcon: const Icon(
+                            
+                      
+                            prefixIcon:  GestureDetector(child: const Icon(
                               Icons.edit,
                               size: 17,
                               color: Color(0xFF216583),
-                            ),
+                            ), onTap: () {
+                              
+                             
+                            },)
+   
                           ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return AppLocalizations.of(context)!.empty;
+                            } else if (value.length < 8) {
+                              return AppLocalizations.of(context)!.pass;
+                            } else {
+                              return null;
+                            }
+                          },
+                        
                         ),
                       ),
                     ),
-                    SizedBox(height: 50,),
+                    SizedBox(
+                      height: 50,
+                    ),
                   ],
                 ),
               ),
@@ -341,47 +404,3 @@ class _User1State extends State<User1> {
         ));
   }
 }
-/*           
-                TextFormField(
-                decoration: InputDecoration(
-                  labelText: "input Email",
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(22.0),
-                    ),
-                  ),
-                  prefixIcon: const Icon(
-                    Icons.edit,
-                    size: 17,
-                    color: Color(0xFF216583),
-                  ),
-                ),
-              ) ,
-              SizedBox(
-                height: 20.0,
-              ),
-              Row(
-                children: [
-                 
-                ],
-              ),
-              SizedBox(
-                height: 10.0,
-              ),
-                TextFormField(
-                decoration: InputDecoration(
-                  labelText: "input Password",
-                  border: const OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(22.0),
-                    ),
-                  ),
-                  prefixIcon: const Icon(
-                    Icons.edit,
-                    size: 17,
-                    color: Color(0xFF216583),
-                  ),
-                ),
-              ),
-        
- */

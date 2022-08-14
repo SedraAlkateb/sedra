@@ -69,7 +69,7 @@ class _signupState extends State<signup> {
                           ),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "username musn't be empty";
+                              return AppLocalizations.of(context)!.empty;
                             }
                             return null;
                           },
@@ -95,7 +95,7 @@ class _signupState extends State<signup> {
                           ),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "email musn't be empty";
+                              return AppLocalizations.of(context)!.email;
                             }
                             return null;
                           },
@@ -121,9 +121,9 @@ class _signupState extends State<signup> {
                           ),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "Please Enter New Password";
+                              return AppLocalizations.of(context)!.empty;
                             } else if (value.length < 8) {
-                              return "Password must be atleast 8 characters long";
+                              return AppLocalizations.of(context)!.pass;
                             } else {
                               return null;
                             }
@@ -145,7 +145,7 @@ class _signupState extends State<signup> {
                         child: DropdownButtonHideUnderline(
                           child: DropdownButton<String>(
                             value: value,
-                            hint: const Text("Governorate"),
+                            hint:  Text(AppLocalizations.of(context)!.governorate),
                             icon:
                                 const Icon(Icons.arrow_drop_down, color: Colors.grey),
                             isExpanded: true,
@@ -172,7 +172,7 @@ class _signupState extends State<signup> {
                         child: DropdownButtonHideUnderline(
                           child: DropdownButton<String>(
                             value: value,
-                            hint: const Text("City"),
+                            hint:  Text(AppLocalizations.of(context)!.city),
                             icon:
                                 const Icon(Icons.arrow_drop_down, color: Colors.grey),
                             isExpanded: true,
@@ -199,7 +199,7 @@ class _signupState extends State<signup> {
                         child: DropdownButtonHideUnderline(
                           child: DropdownButton<String>(
                             value: value1,
-                            hint: const Text("Area"),
+                            hint:  Text(AppLocalizations.of(context)!.area),
                             icon: const Icon(
                               Icons.arrow_drop_down,
                               color: Colors.grey,
@@ -231,7 +231,7 @@ class _signupState extends State<signup> {
                           ),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return "Street musn't be empty";
+                              return AppLocalizations.of(context)!.empty;
                             }
                             return null;
                           },

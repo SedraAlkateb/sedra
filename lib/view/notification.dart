@@ -1,6 +1,5 @@
 import 'package:care4sure/components/components.dart';
 import 'package:care4sure/model/menuitem.dart';
-import 'package:care4sure/view/mainhome/home.dart';
 import 'package:flutter/material.dart';
 
 import '../../view_model/menuitemvm.dart';
@@ -46,11 +45,8 @@ class _Notification1State extends State<Notification1> {
         leading: IconButton(
           onPressed: () {
             if (i == 0) {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const HomeScreen(),
-                  ));
+              Navigator.pop(
+                  context);
             }
           },
           icon: const Icon(Icons.arrow_back_ios,

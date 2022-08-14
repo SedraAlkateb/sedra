@@ -3,6 +3,7 @@
 import 'package:care4sure/components/components.dart';
 import 'package:care4sure/view/notification.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Pharmacy extends StatefulWidget {
   const Pharmacy({Key? key}) : super(key: key);
@@ -13,6 +14,8 @@ class Pharmacy extends StatefulWidget {
 }
 
 class _PharmacyState extends State<Pharmacy> {
+  final items2 = ['i1', 'i2', 'i3', 'i4', 'i5'];
+  String? value1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +32,9 @@ class _PharmacyState extends State<Pharmacy> {
             )),
           ),
           leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             icon: const Icon(Icons.arrow_back_ios,
                 size: 21.0, color: Color(0XFF243162)),
           ),
@@ -66,12 +71,16 @@ class _PharmacyState extends State<Pharmacy> {
                   ),
                   Center(
                     child: Column(
+                      // ignore: prefer_const_literals_to_create_immutables
                       children: [
                         CircleAvatar(
-                            maxRadius: 50.0,
-                            backgroundColor: Color(0xFF00818a),
-                            child: icon(Icons.person, 21, Color(0xFFFFFFFF))),
-                      SizedBox(height: 10.0,),
+                          maxRadius: 50.0,
+                          backgroundImage: AssetImage("sedra.jpg"),
+                          backgroundColor: Color(0xFF00818a),
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
                         Text(
                           "name pharmacy",
                           style: TextStyle(
@@ -86,7 +95,7 @@ class _PharmacyState extends State<Pharmacy> {
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                    right: 50.0,left: 20, top: 20.0,bottom: 20),
+                    right: 50.0, left: 20, top: 20.0, bottom: 50),
                 child: Column(
                   children: [
                     Row(
@@ -123,38 +132,99 @@ class _PharmacyState extends State<Pharmacy> {
                       height: 30.0,
                     ),
                     Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        icon(Icons.work_history_rounded, 21, Color(0xFF00818a)),
+                        SizedBox(
+                          width: 5.0,
+                        ),
+                        Text(
+                          "Working hours",
+                          style: TextStyle(
+                              fontSize: 18.0, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Expanded(
+                          child: Text(
+                            'Day',
+                            style: TextStyle(
+                                fontSize: 18.0, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          child: Text(
+                            'ldfaflasflkaflk',
+                            style: TextStyle(
+                                fontSize: 18.0, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              icon(Icons.work_history_rounded, 21,
-                                  Color(0xFF00818a)),
-                              SizedBox(
-                                width: 5.0,
-                              ),
-                              Text(
-                                "Working hours",
+                            child: Row(
+                          children: const [
+                            Text(
+                              'From',
+                              style: TextStyle(
+                                  fontSize: 18.0, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              width: 20.0,
+                            ),
+                            Expanded(
+                              child: Text(
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                'monday',
                                 style: TextStyle(
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.bold),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
+                        )),
+                        SizedBox(
+                          width: 30,
                         ),
                         Expanded(
-                          child: Container(
-                                                        alignment: Alignment.bottomRight,
-
-                            child: Text(
-                              "from to",
+                            child: Row(
+                          children: const [
+                            Text(
+                              'To',
                               style: TextStyle(
                                   fontSize: 18.0, fontWeight: FontWeight.bold),
                             ),
-                          ),
-                        )
+                            SizedBox(
+                              width: 20.0,
+                            ),
+                            Expanded(
+                              child: Text(
+                                'satrday',
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
+                        ))
                       ],
                     ),
                     SizedBox(
@@ -189,7 +259,8 @@ class _PharmacyState extends State<Pharmacy> {
                               child: Text(
                                 "0965469372",
                                 style: TextStyle(
-                                    fontSize: 18.0, fontWeight: FontWeight.bold),
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
                             separatorBuilder:
@@ -198,8 +269,61 @@ class _PharmacyState extends State<Pharmacy> {
                             ),
                           ),
                         ),
+                        SizedBox(
+                          height: 30.0,
+                        ),
                       ],
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: [
+                        icon(Icons.book_outlined, 21, Color(0xFF00818a)),
+                        SizedBox(
+                          width: 5.0,
+                        ),
+                        Text(
+                          "Booking period",
+                          style: TextStyle(
+                              fontSize: 18.0, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 30.0,
+                    ),
+                    Container(
+                      height: 34,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 4),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25.0),
+                        color: Colors.blue[50],
+                      ),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton<String>(
+                          value: value1,
+                          hint: Text('time'),
+                          icon: const Icon(
+                            Icons.arrow_drop_down,
+                            color: Colors.grey,
+                          ),
+                          isExpanded: true,
+                          items: items2.map(buildMenuItem).toList(),
+                          onChanged: (value) => setState(() => value1 = value),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30.0,
+                    ),
+                    defaultButton(
+                        function: () {},
+                        textt: AppLocalizations.of(context)!.confirmation,
+                        isUpperCase: false,
+                        width: 180.0,
+                        radios: 22),
                   ],
                 ),
               ),

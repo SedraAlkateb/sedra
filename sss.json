@@ -20,11 +20,5 @@
   "Area":"المنطقة",
   "The field must'nt remain empty":"يجب ألا يبقى الحقل فارغًا",
 "Password must be atleast 8 characters long":"يجب أن تتكون كلمة المرور من 8 أحرف على الأقل",
-"Picture of the prescription that contains the medicine":"صورة الراشيتا التي تحتوي الدواء",
-"confirmation":"تاكيد",
-"All medicines":"جميع الأدوية",
-"Profile":"الصفحة الشخصية",
-"Drug Administration":"ادارة الادوية",
-"Sign out":"تسجيل خروج",
-"Full name":"الاسم الكامل"
+"Picture of the prescription that contains the medicine":"صورة الراشيتا التي تحتوي الدواء"
 }

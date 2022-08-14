@@ -97,25 +97,10 @@
     "confirmation": "Confirmation",
     "@confirmation": {
       "description": "Confirmation"
-    },
-     "medicines": "All medicines",
-    "@medicines": {
-      "description": "All medicines"
-    },
-     "profile": "Profile",
-    "@profile": {
-      "description": "Profile"
-    },
-     "drug": "Drug Administration",
-    "@drug": {
-      "description": "Drug Administration"
-    },
-      "signout": "Sign out",
-    "@signout": {
-      "description": "Sign out "
-    },
-      "fullname": "Full name",
-    "@fullname": {
-      "description": "Full name"
     }
+    ,"medicines": "Confirmation",
+    "@medicines": {
+      "description": "Confirmation"
+    }
+    
   }

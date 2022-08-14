@@ -77,7 +77,7 @@ class _Home2State extends State<Home2> {
                           child: DropdownButtonHideUnderline(
                             child: DropdownButton<String>(
                               value: value,
-                              hint: const Text("area"),
+                              hint:  Text( AppLocalizations.of(context)!.area),
                               icon:
                                   const Icon(Icons.arrow_drop_down, color: Colors.grey),
                               isExpanded: true,

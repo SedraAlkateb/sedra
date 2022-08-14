@@ -1,4 +1,4 @@
-import 'package:care4sure/model/user.dart';
+/*import 'package:care4sure/model/user.dart';
 
 
 // ignore: camel_case_types
@@ -15,3 +15,4 @@ class signin_viewmodel {
   get username => usermodel?.username;
 
 }
+ */
